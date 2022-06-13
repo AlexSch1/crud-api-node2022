@@ -1,0 +1,19 @@
+{
+  "name": "crud-api-node2022",
+  "version": "1.0.0",
+  "description": "crud-api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexSch1/crud-api-node2022.git"
+  },
+  "author": "alex",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexSch1/crud-api-node2022/issues"
+  },
+  "homepage": "https://github.com/AlexSch1/crud-api-node2022#readme"
+}
