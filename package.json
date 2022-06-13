@@ -19,5 +19,8 @@
   "homepage": "https://github.com/AlexSch1/crud-api-node2022#readme",
   "dependencies": {
     "dotenv": "^16.0.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
