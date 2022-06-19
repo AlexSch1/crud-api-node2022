@@ -3,7 +3,7 @@ import * as uuid from 'uuid';
 
 export class UserModel implements IUser {
   constructor(
-    public name: string,
+    public username: string,
     public age: number,
     public hobbies: string[],
     public id = uuid.v4(),

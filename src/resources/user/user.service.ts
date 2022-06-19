@@ -34,6 +34,8 @@ export const user = async (
       throw new Error('User do not exist');
     }
 
+    client.res.statusCode = 200;
+    client.res.setHeader('Content-Type', 'application/json');
     return JSON.stringify(user);
   } catch (e) {
     return (<Error>e).message;
@@ -56,17 +58,17 @@ export const create = async (client: { req: Request; res: Response }) => {
           Buffer.concat(rawUserBuffer).toString()
         );
 
-        if (!rawUser.age || !rawUser.name || !rawUser.hobbies) {
+        if (!rawUser.age || !rawUser.username || !rawUser.hobbies) {
           client.res.statusCode = 400;
           throw new Error('Invalid user information');
         }
 
         if (isNaN(rawUser.age) || (rawUser.hobbies.length && !check(rawUser.hobbies))) {
           client.res.statusCode = 400;
-          throw new Error('Invalid user information 2');
+          throw new Error('Invalid user information');
         }
 
-        const newUser = new UserModel(rawUser.name, rawUser.age, rawUser.hobbies);
+        const newUser = new UserModel(rawUser.username, rawUser.age, rawUser.hobbies);
 
         await createRepository(newUser);
 
@@ -107,14 +109,14 @@ export const update = async (client: { req: Request; res: Response }, param: str
             Buffer.concat(rawUserBuffer).toString()
         );
 
-        if (!rawUser.age || !rawUser.name || !rawUser.hobbies) {
+        if (!rawUser.age || !rawUser.username || !rawUser.hobbies) {
           client.res.statusCode = 400;
           throw new Error('Invalid user information');
         }
 
         if (isNaN(rawUser.age) || (rawUser.hobbies.length && !check(rawUser.hobbies))) {
           client.res.statusCode = 400;
-          throw new Error('Invalid user information 2');
+          throw new Error('Invalid user information');
         }
 
         const user = await userRepository(param);
@@ -128,7 +130,7 @@ export const update = async (client: { req: Request; res: Response }, param: str
 
         console.log(updatedUser)
 
-        client.res.statusCode = 201;
+        client.res.statusCode = 200;
         client.res.setHeader('Content-Type', 'application/json',)
 
         resolve(JSON.stringify(updatedUser));
