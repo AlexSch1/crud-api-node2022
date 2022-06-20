@@ -5,8 +5,9 @@
   "main": "build/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "nodemon src/index.ts",
-    "start:prod": "node build/index",
+    "start:dev": "nodemon src/index.ts",
+    "start:prod": "tsc && node build/index",
+    "test": "cross-env DEBUG=rs:* jest --testMatch \"<rootDir>/test/e2e/test/*.test.js\" --noStackTrace --runInBand",
     "lint": "eslint --ext .ts --fix src/"
   },
   "repository": {
@@ -18,12 +19,22 @@
   "bugs": {
     "url": "https://github.com/AlexSch1/crud-api-node2022/issues"
   },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./test/setup.js"
+    ]
+  },
   "homepage": "https://github.com/AlexSch1/crud-api-node2022#readme",
   "dependencies": {
+    "chai": "^4.3.6",
+    "dirty-chai": "^2.0.1",
     "dotenv": "^16.0.1",
+    "jest": "^28.1.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.17.0",
@@ -35,6 +46,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2",
+    "supertest": "^6.2.3",
     "ts-node": "^10.8.1",
     "typescript": "^4.7.3"
   }
